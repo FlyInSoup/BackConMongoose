@@ -1,6 +1,5 @@
 const Localidad = require('../models/Localidad');
 
-
 // @desc Get all Localidades/
 // @route GET /api/v1/localidades
 // @access Public
@@ -47,15 +46,6 @@ exports.addLocalidad = async (req, res, next) => {
 
 exports.getLocalidad = async (req, res, next) => {
     try {
-        //we recieve a param called id from the url
-        //the id is the same as cod_postal in the database
-        //we need to find the localidad with the cod_postal matching the id in the url
-        //we need to return only the nombre field of the localidad founded
-        // const found = ;
-        
-        //if we don't find a localidad with the id in the url
-        //we return a 404 error
-
         const localidad = await Localidad.findOne({ cod_postal: req.params.id });
         if (!localidad) {
             return res.status(404).json({
@@ -76,3 +66,28 @@ exports.getLocalidad = async (req, res, next) => {
         });
     }
 };
+
+
+const crearLocalidad = (cod, nombre_loc) => {
+    Localidad.create(
+        {
+            cod_postal: cod,
+            nombre: nombre_loc
+        }
+    )
+}
+//crearLocalidad("3500", "Resistencia");
+
+const editarLocalidad = async () => {
+    try {
+        const resultado = await Localidad.updateOne(
+            { cod_postal: '3100' },
+            { $set: { nombre: 'Paraná' } }
+        )
+        console.log('***** RESULTADO EDITADO *****', resultado);
+    } catch (error) {
+        console.error(error);
+    }
+   
+}
+//editarLocalidad();

@@ -10,7 +10,7 @@ const LocalidadSchema = new mongoose.Schema({
     },
     nombre: {
         type: String,
-        required: [true, 'Por favor ingrese un nombre'],
+        required: [true, 'Por favor ingrese un nombre de localidad'],
         trim: true,
         maxlength: [50, 'Name cannot be more than 50 characters'],
     },
