@@ -19,10 +19,10 @@ exports.getClientes = async (req, res, next) => {
 
 exports.addCliente = async (req, res, next) => {
     try {
-        const clientes = await Cliente.create(req.body);
+        const cliente = await Cliente.create(req.body);
         return res.status(201).json({
             success: true,
-            data: clientes 
+            data: cliente 
         });
     } catch (error) {
         console.error(error);
