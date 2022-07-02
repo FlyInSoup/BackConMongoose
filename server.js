@@ -28,6 +28,7 @@ app.use('/api/v1/propiedades', require('./routes/propiedades'));
 app.use('/api/v1/pagos', require('./routes/pagos'));
 app.use('/api/v1/tipos', require('./routes/tiposPropiedades'));
 app.use('/api/v1/monedas', require('./routes/moneda'));
+app.use('/api/v1/clientes', require('./routes/clientes'));
 
 const PORT = process.env.PORT || 5000;
 
