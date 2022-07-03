@@ -29,15 +29,17 @@ const PropiedadSchema = new mongoose.Schema({
     propietario: {
         type: mongoose.Types.ObjectId,
         ref: 'Cliente',
+        required: [true, 'Por favor ingrese un propietario'],
     },
-    contrato: {
+    contrato: [{
         type: mongoose.Types.ObjectId,
         ref: 'Contrato',
-    },
+    }],
     estado: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Estado',
-        required: [true, 'Por favor ingrese un estado'],
+        type: String,
+        trim: true,
+        maxlength: [20, 'estado no puede tener mas de 20 caracteres'],
+        default: 'Disponible',
     },
 });
 

@@ -20,3 +20,13 @@ exports.getTipoPropiedad = async (req, res, next) => {
         });
     }
 };
+
+// creando Tipos de Propiedades a mano
+// const tipo = {
+//     cod_tipo_prop: 3,
+//     tipo: 'Cochera',
+// }
+// addtipoPropiedad = async () => {
+//         const tipoPropiedad = await TipoPropiedad.create(tipo);
+// }
+// addtipoPropiedad();
