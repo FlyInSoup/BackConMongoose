@@ -1,9 +1,10 @@
 const express = require('express');
-const { getTipoPropiedad } = require('../controllers/tipoPropiedades');
+const { getTipoPropiedad, getTipoPropiedadById } = require('../controllers/tipoPropiedades');
 
 const router = express.Router();
 
 //solo tiene get porque van a estar cargados en la base de datos
-router.route('/:id').get(getTipoPropiedad);
+router.route('/').get(getTipoPropiedad);
+router.route('/:_id').get(getTipoPropiedadById);
 
 module.exports = router;

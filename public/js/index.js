@@ -4,8 +4,9 @@ window.onload = function() {
 
     async function obtenerPropiedades() {
         const response = await fetch(url);
-        const data = await response.json();
+        var data = await response.json();
         var propiedades = data.data;
+        
         propiedades = propiedades.map(propiedad => {
           return {
             cod_prop: propiedad.cod_prop,
@@ -16,28 +17,34 @@ window.onload = function() {
             estado: propiedad.estado,
           };
         });
+
+        for(var i = 0; i < propiedades.length; i++) {
+          var resul = await fetch(`/api/v1/tipos/${propiedades[i].tipo}`);
+          var data2 = await resul.json();
+          propiedades[i].tipo = data2.data.tipo;
+        }
+        llenarTabla(propiedades);
         return propiedades;
     }
+    obtenerPropiedades();
 
-    console.log(obtenerPropiedades());
-
-    llenarTabla = async () => {
-        const propiedades = await obtenerPropiedades();
+    function llenarTabla(pr){
+        const propiedades = pr;
         const tbody = table.getElementsByTagName('tbody')[0];
         tbody.innerHTML = '';
         propiedades.forEach(function (propiedad, index) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
+                <td>${propiedad.tipo}</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td>${propiedad.dimension}</td>
+                <td>${propiedad.dimension} m&sup2;</td>
                 <td>${propiedad.descripcion}</td>
                 <td><button id="prop_${index}" class="btn-ver-mas">+</button></td>`;
             tbody.appendChild(tr);
         });
     }
-    llenarTabla();
+    
 
         
 

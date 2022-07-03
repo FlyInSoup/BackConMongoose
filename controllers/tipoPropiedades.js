@@ -21,6 +21,29 @@ exports.getTipoPropiedad = async (req, res, next) => {
     }
 };
 
+exports.getTipoPropiedadById = async (req, res, next) => {
+    try {
+        const tipo = await TipoPropiedad.findById(req.params._id);
+        if (!tipo) {
+            return res.status(404).json({
+                success: false,
+                error: 'Tipo de propiedad not found'
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            data: tipo
+        });
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            error: 'Server Error'
+        });
+    }
+}
+
+
 // creando Tipos de Propiedades a mano
 // const tipo = {
 //     cod_tipo_prop: 3,
