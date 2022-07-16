@@ -15,12 +15,12 @@ const ClienteSchema = new mongoose.Schema({
         maxlength: [60, 'nombre no puede tener mas de 60 caracteres'],
     },
     celular: {
-        type: String,
+        type: Number,
         trim: true,
         maxlength: [20, 'celular no puede tener mas de 20 caracteres'],
     },
     telefono: {
-        type: String,
+        type: Number,
         trim: true,
         maxlength: [20, 'telefono no puede tener mas de 20 caracteres'],
     },
@@ -32,28 +32,33 @@ const ClienteSchema = new mongoose.Schema({
     condicion_iva: {
         type: String,
         trim: true,
-        maxlength: [20, 'condicion_iva no puede tener mas de 20 caracteres'],
+        maxlength: [50, 'condicion_iva no puede tener mas de 20 caracteres'],
     },
     domicilio: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Domicilio',
-        required: [true, 'Por favor ingrese un domicilio'],
-    },
-    propiedades: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Propiedad',
-    }],
-    contratos: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Contrato',
-    }],
-    pagos: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Pago',
-    }],
-    representante: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Cliente',
+        calle:{
+            type: String,
+            trim: true,
+            maxlength: [50, 'calle no puede tener mas de 50 caracteres'],
+        },
+        altura:{
+            type: Number,
+            trim: true,
+            maxlength: [6, 'altura no puede tener mas de 50 caracteres']},
+        piso:{
+            type: Number,
+            trim: true,
+            maxlength: [3, 'piso no puede tener mas de 3 caracteres']
+        },
+        dpto:{
+            type: String,
+            trim: true,
+            maxlength: [3, 'dpto no puede tener mas de 3 caracteres']
+        },
+        localidad:{
+            type: String,
+            trim: true,
+            maxlength: [10, 'localidad no puede tener mas de 10 caracteres']
+        }
     }
 });
 
